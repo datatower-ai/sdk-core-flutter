@@ -47,6 +47,8 @@ class _HomePageState extends State<HomePage> {
           const UserPropSect(),
           const Divider(),
           const AllApiSect(),
+          const Divider(),
+          const OthersSect(),
           const SizedBox(
             height: 10,
           ),
@@ -99,6 +101,12 @@ class BuiltInUserPropertiesSect extends StatelessWidget {
               return str;
             }),
         ClickSetText(
+            title: "Set #distinct_id",
+            onConfirm: (str) {
+              DTAnalytics.setDistinctId(str);
+              return str;
+            }),
+        ClickSetText(
             title: "Set #latest_firebase_id",
             onConfirm: (str) {
               DTAnalytics.setFirebaseAppInstanceId(str);
@@ -122,6 +130,16 @@ class BuiltInUserPropertiesSect extends StatelessWidget {
               DTAnalytics.setAdjustId(str);
               return str;
             }),
+        ClickableText(
+            title: "Get #distinct_id",
+            initText: "To get the latest stored #distinct_id",
+            onClick: () async {
+              final id = await DTAnalytics.getDistinctId();
+              if (id == null) {
+                return "#distinct_id is not set";
+              }
+              return id;
+            })
       ],
     );
   }
@@ -160,6 +178,13 @@ class EventTrackingSect extends StatelessWidget {
             onClick: () async {
               Navigator.pushNamed(context, "/track_event");
               return null;
+            }),
+        ClickableText(
+            title: "Common Properties",
+            initText: "Set/Clear dynamic/static common properties",
+            onClick: () async {
+              Navigator.pushNamed(context, "/common_properties");
+              return null;
             })
       ],
     );
@@ -190,7 +215,7 @@ class UserPropSect extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text("User Properties",
+          child: Text("User Related",
               style: Theme.of(context)
                   .textTheme
                   .titleLarge
@@ -231,6 +256,35 @@ class AllApiSect extends StatelessWidget {
             initText: "Show all api implemented in SDK",
             onClick: () async {
               Navigator.pushNamed(context, "/show_all_api");
+              return null;
+            })
+      ],
+    );
+  }
+}
+
+class OthersSect extends StatelessWidget {
+  const OthersSect({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text("Others",
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary)),
+        ),
+        ClickableText(
+            title: "Enable Upload",
+            initText: "Manually enables upload (takes effect once)",
+            onClick: () async {
+              DT.enableUpload();
               return null;
             })
       ],

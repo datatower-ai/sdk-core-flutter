@@ -43,4 +43,13 @@ abstract class DTAnalyticsPigeon {
   void setAdjustId(String? id);
 
   void enableThirdPartySharing(int type);
+
+  void setDistinctId(String? id);
+
+  @async
+  String? getDistinctId();
+
+  void setStaticCommonProperties(Map<String, Object> properties);
+
+  void clearStaticCommonProperties();
 }

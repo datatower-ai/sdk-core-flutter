@@ -69,4 +69,20 @@ internal object DtAnalyticsPigeonImpl: DTAnalyticsPigeon {
     override fun enableThirdPartySharing(type: Long) {
         DTAnalytics.enableThirdPartySharing(type.toInt())
     }
+
+    override fun setDistinctId(id: String?) {
+        DTAnalytics.distinctId = id
+    }
+
+    override fun getDistinctId(callback: (Result<String?>) -> Unit) {
+        callback.invoke(Result.success(DTAnalytics.distinctId))
+    }
+
+    override fun setStaticCommonProperties(properties: Map<String, Any>) {
+        DTAnalytics.setStaticCommonProperties(properties)
+    }
+
+    override fun clearStaticCommonProperties() {
+        DTAnalytics.clearStaticCommonProperties()
+    }
 }

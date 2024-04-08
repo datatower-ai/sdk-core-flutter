@@ -1,5 +1,6 @@
 import 'package:datatower_ai_core/src/pigeon/dt_analytics.g.dart';
 import 'package:datatower_ai_core/src/base/dt_api.dart';
+import 'package:datatower_ai_core/src/util/common_props_helper.dart';
 import 'package:datatower_ai_core/util/type_util.dart';
 
 @DTApi()
@@ -11,7 +12,12 @@ class DTAnalytics {
   /// - [eventName] 事件的名称
   /// - [properties] 事件属性
   static Future<void> trackEvent(String eventName,
-      [JsonMap properties = const {}]) {
+      [JsonMap properties = const {}]
+  ) {
+    final dcp = CommonPropertiesHelper.instance.getDynamicCommonProperties();
+    for (final entry in dcp.entries) {
+      properties.putIfAbsent(entry.key, () => entry.value);
+    }
     return _pigeon.trackEvent(eventName, properties);
   }
 
@@ -69,7 +75,7 @@ class DTAnalytics {
 
   /// 设置自有用户系统的id
   ///
-  /// - [id] 用户系统id
+  /// - [id] 用户系统id，如果传 null 或空字符串则等同于登出。
   static Future<void> setAccountId(String? id) {
     return _pigeon.setAccountId(id);
   }
@@ -108,5 +114,43 @@ class DTAnalytics {
   ///     - ADJUST: 1
   static Future<void> enableThirdPartySharing(int type) {
     return _pigeon.enableThirdPartySharing(type);
+  }
+
+  /// 设置访客 id
+  ///
+  /// - [id] 访客 id
+  static Future<void> setDistinctId(String? id) {
+    return _pigeon.setDistinctId(id);
+  }
+
+  /// 获取先前设置的访客 id
+  static Future<String?> getDistinctId() {
+    return _pigeon.getDistinctId();
+  }
+
+  /// 设置动态通用属性
+  ///
+  /// - [getter] 动态回调，用于获取通用熟悉
+  static Future<void> setDynamicCommonProperties(JsonMap Function() getter) {
+    CommonPropertiesHelper.instance.setDynamicCommonPropertiesGetter(getter);
+    return Future.value(null);
+  }
+
+  /// 清除动态通用属性
+  static Future<void> clearDynamicCommonProperties() {
+    CommonPropertiesHelper.instance.clearDynamicCommonProperties();
+    return Future.value(null);
+  }
+
+  /// 设置静态通用属性（持久化存储）
+  ///
+  /// - [properties] 通用属性
+  static Future<void> setStaticCommonProperties(JsonMap properties) {
+    return _pigeon.setStaticCommonProperties(properties);
+  }
+
+  /// 清除静态通用属性
+  static Future<void> clearStaticCommonProperties() {
+    return _pigeon.clearStaticCommonProperties();
   }
 }

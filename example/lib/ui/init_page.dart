@@ -17,6 +17,7 @@ class _State extends State<InitPage> {
   String url = "https://test.roiquery.com";
   bool _isDebug = true;
   DTLogLevel _logLevel = DTLogLevel.DEBUG;
+  bool manualEnableUpload = false;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class _State extends State<InitPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Init DT SDK",
+                    "DT SDK Flutter\n(Demo)",
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Theme.of(context).colorScheme.primary),
                     textAlign: TextAlign.center,
@@ -55,12 +56,20 @@ class _State extends State<InitPage> {
                     onChanged: (str) => url = str,
                     maxLines: null,
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   Row(children: [
-                    const Text("Is debug"),
-                    Checkbox(
+                    Switch(
                         value: _isDebug,
-                        onChanged: (_) => setState(() => _isDebug = !_isDebug)),
+                        onChanged: (_) => setState(() => _isDebug = !_isDebug)
+                    ),
+                    const SizedBox(width: 15,),
+                    Expanded(child: Text("Is debug", style: Theme.of(context).textTheme.bodyLarge,)),
                   ]),
+                  const SizedBox(
+                    height: 10,
+                  ),
                   if (_isDebug) ...[
                     const SizedBox(
                       height: 5,
@@ -84,6 +93,17 @@ class _State extends State<InitPage> {
                     ),
                   ],
                   const SizedBox(
+                    height: 10,
+                  ),
+                  Row(children: [
+                    Switch(
+                      value: manualEnableUpload,
+                      onChanged: (_) => setState(() => manualEnableUpload = !manualEnableUpload)
+                    ),
+                    const SizedBox(width: 15,),
+                    Expanded(child: Text("Manually enable upload", style: Theme.of(context).textTheme.bodyLarge, maxLines: 2,)),
+                  ]),
+                  const SizedBox(
                     height: 20,
                   ),
                   ElevatedButton(
@@ -97,7 +117,9 @@ class _State extends State<InitPage> {
                           DT.initSDK(appId, url,
                               channel: channel,
                               isDebug: _isDebug,
-                              logLevel: _logLevel);
+                              logLevel: _logLevel,
+                              manualEnableUpload: manualEnableUpload,
+                          );
                           Navigator.of(context).pushNamed("/home");
                         }
                       },

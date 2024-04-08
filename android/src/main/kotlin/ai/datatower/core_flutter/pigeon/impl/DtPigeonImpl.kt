@@ -14,6 +14,7 @@ internal class DtPigeonImpl(private val context: Context): DTPigeon {
         channel: String,
         isDebug: Boolean,
         logLevel: DTLogLevel,
+        manualEnableUpload: Boolean,
         commonProperties: Map<String, Any>
     ) {
         DT.initSDK(
@@ -29,7 +30,12 @@ internal class DtPigeonImpl(private val context: Context): DTPigeon {
                 DTLogLevel.ERROR -> Log.ERROR
                 else -> Log.DEBUG
             },
+            manualEnableUpload,
             JSONObject(commonProperties)
         )
+    }
+
+    override fun enableUpload() {
+        DT.enableUpload()
     }
 }

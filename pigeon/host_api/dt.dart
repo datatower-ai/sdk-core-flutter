@@ -27,6 +27,9 @@ abstract class DTPigeon {
     String channel,
     bool isDebug,
     DTLogLevel logLevel,
+    bool manualEnableUpload,
     Map<String, Object> commonProperties,
   );
+
+  void enableUpload();
 }
