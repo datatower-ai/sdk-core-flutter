@@ -324,42 +324,6 @@ void SetUpDTDTAnalyticsPigeonWithSuffix(id<FlutterBinaryMessenger> binaryMesseng
   {
     FlutterBasicMessageChannel *channel =
       [[FlutterBasicMessageChannel alloc]
-        initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.setDistinctId", messageChannelSuffix]
-        binaryMessenger:binaryMessenger
-        codec:DTDTAnalyticsPigeonGetCodec()];
-    if (api) {
-      NSCAssert([api respondsToSelector:@selector(setDistinctIdId:error:)], @"DTDTAnalyticsPigeon api (%@) doesn't respond to @selector(setDistinctIdId:error:)", api);
-      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        NSArray *args = message;
-        NSString *arg_id = GetNullableObjectAtIndex(args, 0);
-        FlutterError *error;
-        [api setDistinctIdId:arg_id error:&error];
-        callback(wrapResult(nil, error));
-      }];
-    } else {
-      [channel setMessageHandler:nil];
-    }
-  }
-  {
-    FlutterBasicMessageChannel *channel =
-      [[FlutterBasicMessageChannel alloc]
-        initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.getDistinctId", messageChannelSuffix]
-        binaryMessenger:binaryMessenger
-        codec:DTDTAnalyticsPigeonGetCodec()];
-    if (api) {
-      NSCAssert([api respondsToSelector:@selector(getDistinctIdWithCompletion:)], @"DTDTAnalyticsPigeon api (%@) doesn't respond to @selector(getDistinctIdWithCompletion:)", api);
-      [channel setMessageHandler:^(id _Nullable message, FlutterReply callback) {
-        [api getDistinctIdWithCompletion:^(NSString *_Nullable output, FlutterError *_Nullable error) {
-          callback(wrapResult(output, error));
-        }];
-      }];
-    } else {
-      [channel setMessageHandler:nil];
-    }
-  }
-  {
-    FlutterBasicMessageChannel *channel =
-      [[FlutterBasicMessageChannel alloc]
         initWithName:[NSString stringWithFormat:@"%@%@", @"dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.setStaticCommonProperties", messageChannelSuffix]
         binaryMessenger:binaryMessenger
         codec:DTDTAnalyticsPigeonGetCodec()];

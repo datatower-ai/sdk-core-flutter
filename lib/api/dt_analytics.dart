@@ -116,18 +116,6 @@ class DTAnalytics {
     return _pigeon.enableThirdPartySharing(type);
   }
 
-  /// 设置访客 id
-  ///
-  /// - [id] 访客 id
-  static Future<void> setDistinctId(String? id) {
-    return _pigeon.setDistinctId(id);
-  }
-
-  /// 获取先前设置的访客 id
-  static Future<String?> getDistinctId() {
-    return _pigeon.getDistinctId();
-  }
-
   /// 设置动态通用属性
   ///
   /// - [getter] 动态回调，用于获取通用熟悉

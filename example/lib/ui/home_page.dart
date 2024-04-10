@@ -101,12 +101,6 @@ class BuiltInUserPropertiesSect extends StatelessWidget {
               return str;
             }),
         ClickSetText(
-            title: "Set #distinct_id",
-            onConfirm: (str) {
-              DTAnalytics.setDistinctId(str);
-              return str;
-            }),
-        ClickSetText(
             title: "Set #latest_firebase_id",
             onConfirm: (str) {
               DTAnalytics.setFirebaseAppInstanceId(str);
@@ -130,16 +124,6 @@ class BuiltInUserPropertiesSect extends StatelessWidget {
               DTAnalytics.setAdjustId(str);
               return str;
             }),
-        ClickableText(
-            title: "Get #distinct_id",
-            initText: "To get the latest stored #distinct_id",
-            onClick: () async {
-              final id = await DTAnalytics.getDistinctId();
-              if (id == null) {
-                return "#distinct_id is not set";
-              }
-              return id;
-            })
       ],
     );
   }

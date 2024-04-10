@@ -59,8 +59,6 @@ interface DTAnalyticsPigeon {
   fun setKochavaId(id: String?)
   fun setAdjustId(id: String?)
   fun enableThirdPartySharing(type: Long)
-  fun setDistinctId(id: String?)
-  fun getDistinctId(callback: (Result<String?>) -> Unit)
   fun setStaticCommonProperties(properties: Map<String, Any>)
   fun clearStaticCommonProperties()
 
@@ -351,43 +349,6 @@ interface DTAnalyticsPigeon {
               wrapped = wrapError(exception)
             }
             reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.setDistinctId$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { message, reply ->
-            val args = message as List<Any?>
-            val idArg = args[0] as String?
-            var wrapped: List<Any?>
-            try {
-              api.setDistinctId(idArg)
-              wrapped = listOf<Any?>(null)
-            } catch (exception: Throwable) {
-              wrapped = wrapError(exception)
-            }
-            reply.reply(wrapped)
-          }
-        } else {
-          channel.setMessageHandler(null)
-        }
-      }
-      run {
-        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.getDistinctId$separatedMessageChannelSuffix", codec)
-        if (api != null) {
-          channel.setMessageHandler { _, reply ->
-            api.getDistinctId() { result: Result<String?> ->
-              val error = result.exceptionOrNull()
-              if (error != null) {
-                reply.reply(wrapError(error))
-              } else {
-                val data = result.getOrNull()
-                reply.reply(wrapResult(data))
-              }
-            }
           }
         } else {
           channel.setMessageHandler(null)
