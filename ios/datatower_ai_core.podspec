@@ -3,7 +3,7 @@
 # Run `pod lib lint datatower_ai_core.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'datatower_ai_core_flutter'
+  s.name             = 'datatower_ai_core'
   s.version          = '0.0.2'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
@@ -16,7 +16,7 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'DataTowerAiCore', '~> 3.0.0'
+  s.dependency 'DataTowerAICore', '~> 3.0.0'
   s.platform = :ios, '11.0'
   s.static_framework = true
 
