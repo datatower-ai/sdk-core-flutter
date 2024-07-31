@@ -32,7 +32,7 @@ android_sdk_ver=$(grep "ai.datatower:core" < "$project_path/android/build.gradle
 android_sdk_ver_suffix=$(echo "$android_sdk_ver"| sed -n "s/.*+$/(dynamic)/gp")
 echo "┃ Used version of \033[1mDT Android\033[0m：\033[4m$android_sdk_ver\033[0m $android_sdk_ver_suffix"
 
-ios_sdk_ver=$(grep "datatower_ai_core" < "$project_path/ios/datatower_ai_core_flutter.podspec" | sed -n "s/^.*'datatower_ai_core'.*'\(.*\)'/\1/gp")
+ios_sdk_ver=$(grep "DataTowerAiCore" < "$project_path/ios/datatower_ai_core_flutter.podspec" | sed -n "s/^.*'DataTowerAiCore'.*'\(.*\)'/\1/gp")
 ios_sdk_ver_suffix=$(echo "$ios_sdk_ver"| sed -n "s/^~>.*/(dynamic)/gp")
 echo "┃ Used version of \033[1mDT iOS\033[0m：\033[4m$ios_sdk_ver\033[0m $ios_sdk_ver_suffix"
 
@@ -43,13 +43,13 @@ fi
 echo "$thin_divider"
 
 echo "┃ Getting the latest DT iOS/Android version from \033[1mremote...\033[0m"
-android_sdk_remote_ver=$(curl -s https://s01.oss.sonatype.org/content/repositories/releases/ai/datatower/core/maven-metadata.xml | grep "<latest>.*</latest>" | cut -d ">" -f2 | cut -d "<" -f1)
+android_sdk_remote_ver=$(curl -s https://central.sonatype.com/artifact/ai.datatower/core | grep -Eo "pkg:maven/ai.datatower/core@[0-9]\.[0-9]\.[0-9](-.*?)?</span>" | sed -nE "s/pkg:maven\/ai\.datatower\/core@(.*)<\/span>/\1/gp") #$(curl -s https://s01.oss.sonatype.org/content/repositories/releases/ai/datatower/core/maven-metadata.xml | grep "<latest>.*</latest>" | cut -d ">" -f2 | cut -d "<" -f1)
 if [[ -z "$android_sdk_remote_ver" ]]; then
   android_sdk_remote_ver="\033[4;31mNot Found!\033[0m"
   version_check_failed=true
 fi
 echo "┃  - [\033[1mDT Android\033[0m | Maven Central] \033[4m$android_sdk_remote_ver\033[0m"
-ios_sdk_remote_ver=$(curl -s https://cocoapods.org/pods/datatower_ai_core | sed -n 's/.*<h1>datatower_ai_core <span>\([0-9a-zA-Z.-]*\)<\/span><\/h1>.*/\1/gp')
+ios_sdk_remote_ver=$(curl -s https://cocoapods.org/pods/DataTowerAiCore | grep -Eo "<h1>DataTowerAICore <span>.*?<\/span><\/h1>" | sed -n 's/<h1>DataTowerAICore <span>\([0-9a-zA-Z.-]*\)<\/span><\/h1>/\1/gp') #$(curl -s https://cocoapods.org/pods/DataTowerAiCore | sed -n 's/<h1>DataTowerAICore <span>\([0-9a-zA-Z.-]*\)<\/span><\/h1>/\1/gp')
 if [[ -z "$ios_sdk_remote_ver" ]]; then
   ios_sdk_remote_ver="\033[4;31mNot Found!\033[0m"
   version_check_failed=true

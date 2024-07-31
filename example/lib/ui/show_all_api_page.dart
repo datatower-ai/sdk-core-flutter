@@ -353,7 +353,7 @@ class _RunApiDialogState extends State<RunApiDialog> {
               ))
         ],
       );
-    } else if (type.startsWith("Map<String, Object?>")) {
+    } else if (type.startsWith("Map<String, Object?>") && !type.contains("Function")) {
       final controller = TextEditingController(text: jsonEncode(getValue()));
       return TextField(
         controller: controller,

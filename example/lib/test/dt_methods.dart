@@ -16,7 +16,8 @@ const List<DtApiMethodHolder> dtApiMethodHolders = [
   dtApiMethods4DTAnalyticsUtil
 ];
 
-const DtApiMethodHolder dtApiMethods4DT = DtApiMethodHolder("DT", ["initSDK"]);
+const DtApiMethodHolder dtApiMethods4DT =
+    DtApiMethodHolder("DT", ["initSDK", "enableUpload"]);
 
 const DtApiMethodHolder dtApiMethods4DTAdReport =
     DtApiMethodHolder("DTAdReport", [
@@ -52,7 +53,11 @@ const DtApiMethodHolder dtApiMethods4DTAnalytics =
   "setAppsFlyerId",
   "setKochavaId",
   "setAdjustId",
-  "enableThirdPartySharing"
+  "enableThirdPartySharing",
+  "setDynamicCommonProperties",
+  "clearDynamicCommonProperties",
+  "setStaticCommonProperties",
+  "clearStaticCommonProperties"
 ]);
 
 const DtApiMethodHolder dtApiMethods4DTAnalyticsUtil = DtApiMethodHolder(
@@ -94,13 +99,23 @@ final Map<String, DtApiMethod> dtApiMethods = {
       namedParam: {
         "channel": "String",
         "isDebug": "bool",
-        "logLevel": "DTLogLevel"
+        "logLevel": "DTLogLevel",
+        "manualEnableUpload": "bool"
       },
       run: (ordered, named) {
         DT.initSDK(ordered[0], ordered[1],
             channel: named["channel"],
             isDebug: named["isDebug"],
-            logLevel: named["logLevel"]);
+            logLevel: named["logLevel"],
+            manualEnableUpload: named["manualEnableUpload"]);
+      }),
+  "DT_enableUpload": DtApiMethod(
+      name: "DT",
+      orderedParamNames: [],
+      orderedParam: [],
+      namedParam: {},
+      run: (ordered, named) {
+        DT.enableUpload();
       }),
   "DTAdReport_reportLoadBegin": DtApiMethod(
       name: "DTAdReport",
@@ -695,6 +710,42 @@ final Map<String, DtApiMethod> dtApiMethods = {
         DTAnalytics.enableThirdPartySharing(
           ordered[0],
         );
+      }),
+  "DTAnalytics_setDynamicCommonProperties": DtApiMethod(
+      name: "DTAnalytics",
+      orderedParamNames: ["getter"],
+      orderedParam: ["Map<String, Object?> Function()"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalytics.setDynamicCommonProperties(
+          ordered[0],
+        );
+      }),
+  "DTAnalytics_clearDynamicCommonProperties": DtApiMethod(
+      name: "DTAnalytics",
+      orderedParamNames: [],
+      orderedParam: [],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalytics.clearDynamicCommonProperties();
+      }),
+  "DTAnalytics_setStaticCommonProperties": DtApiMethod(
+      name: "DTAnalytics",
+      orderedParamNames: ["properties"],
+      orderedParam: ["Map<String, Object?>"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalytics.setStaticCommonProperties(
+          ordered[0],
+        );
+      }),
+  "DTAnalytics_clearStaticCommonProperties": DtApiMethod(
+      name: "DTAnalytics",
+      orderedParamNames: [],
+      orderedParam: [],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalytics.clearStaticCommonProperties();
       }),
   "DTAnalyticsUtil_trackTimerStart": DtApiMethod(
       name: "DTAnalyticsUtil",
