@@ -14,11 +14,9 @@ class DTAnalytics {
   static Future<void> trackEvent(String eventName,
       [JsonMap properties = const {}]
   ) {
-    final dcp = CommonPropertiesHelper.instance.getDynamicCommonProperties();
-    for (final entry in dcp.entries) {
-      properties.putIfAbsent(entry.key, () => entry.value);
-    }
-    return _pigeon.trackEvent(eventName, properties);
+    return _pigeon.trackEvent(eventName,
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties)
+    );
   }
 
   /// 设置一般的用户属性

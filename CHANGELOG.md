@@ -10,3 +10,5 @@
 > | `/datatower_ai_core_flutter.dart`    | `/datatower_ai_core.dart`    |
 
 * Migrated from datatower_ai_core_flutter
+* NEW: dynamic & static common properties
+* NEW: Third-party id added to event properties

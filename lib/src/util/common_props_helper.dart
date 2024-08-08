@@ -16,4 +16,16 @@ class CommonPropertiesHelper {
   Map<String, dynamic> getDynamicCommonProperties() {
     return dynamicCommonPropertiesGetter?.call() ?? {};
   }
+
+  Map<String, dynamic> insertDynamicCommonProperties(Map<String, dynamic>? properties) {
+    final dcp = getDynamicCommonProperties();
+    if (dcp.isEmpty) return properties ?? {};
+
+    if (properties == null) return dcp;
+
+    for (final entry in dcp.entries) {
+      properties.putIfAbsent(entry.key, () => entry.value);
+    }
+    return properties;
+  }
 }

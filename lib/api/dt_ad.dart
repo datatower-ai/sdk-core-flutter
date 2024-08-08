@@ -2,6 +2,8 @@ import 'package:datatower_ai_core/src/pigeon/dt_ad.g.dart';
 import 'package:datatower_ai_core/src/base/dt_api.dart';
 import 'package:datatower_ai_core/util/type_util.dart';
 
+import '../src/util/common_props_helper.dart';
+
 @DTApi()
 class DTAdReport {
   static final DTAdPigeon _pigeon = DTAdPigeon();
@@ -24,7 +26,10 @@ class DTAdReport {
       String seq,
       {JsonMap? properties}) {
     return _pigeon.reportLoadBegin(
-        id, type, platform, seq, properties ?? {}, mediation, mediationId);
+        id, type, platform, seq,
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties),
+        mediation, mediationId
+    );
   }
 
   /// 上报 广告结束加载
@@ -53,7 +58,7 @@ class DTAdReport {
       String errorMessage = "",
       JsonMap? properties}) {
     return _pigeon.reportLoadEnd(id, type, platform, duration, result, seq,
-        errorCode, errorMessage, properties ?? {}, mediation, mediationId);
+        errorCode, errorMessage, CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), mediation, mediationId);
   }
 
   /// 上报 广告展示请求
@@ -78,7 +83,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportToShow(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 广告展示
@@ -103,7 +108,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportShow(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 广告展示失败
@@ -137,7 +142,7 @@ class DTAdReport {
         seq,
         errorCode,
         errorMessage,
-        properties ?? {},
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties),
         entrance ?? "",
         mediation,
         mediationId);
@@ -165,7 +170,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportClose(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 广告点击
@@ -190,7 +195,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportClick(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 激励广告已获得奖励
@@ -215,7 +220,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportRewarded(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 自定义转化，通过点击
@@ -240,7 +245,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportConversionByClick(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 自定义转化，通过跳出app
@@ -265,7 +270,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportConversionByLeftApp(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 自定义转化事件，通过获得激励
@@ -290,7 +295,7 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportConversionByRewarded(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 
   /// 上报 广告展示价值
@@ -329,7 +334,7 @@ class DTAdReport {
         value,
         currency,
         precision,
-        properties ?? {},
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties),
         entrance ?? "",
         mediation,
         mediationId);
@@ -362,7 +367,7 @@ class DTAdReport {
     JsonMap? properties,
   }) {
     return _pigeon.reportPaidWithCountry(id, type, platform, location, seq,
-        mediation, mediationId, value, precision, country, properties ?? {});
+        mediation, mediationId, value, precision, country, CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties));
   }
 
   /// 上报 访问广告链接，离开当前app(页面)
@@ -387,6 +392,6 @@ class DTAdReport {
       {JsonMap? properties,
       String? entrance}) {
     return _pigeon.reportLeftApp(id, type, platform, location, seq,
-        properties ?? {}, entrance ?? "", mediation, mediationId);
+        CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties), entrance ?? "", mediation, mediationId);
   }
 }

@@ -2,6 +2,8 @@ import 'package:datatower_ai_core/src/pigeon/dt_analytics_util.g.dart';
 import 'package:datatower_ai_core/src/base/dt_api.dart';
 import 'package:datatower_ai_core/util/type_util.dart';
 
+import '../src/util/common_props_helper.dart';
+
 @DTApi()
 class DTAnalyticsUtil {
   static final DTAnalyticsUtilPigeon _pigeon = DTAnalyticsUtilPigeon();
@@ -32,6 +34,6 @@ class DTAnalyticsUtil {
   /// - [eventName] 事件的名称
   /// - [properties] 事件的属性
   static Future<void> trackTimerEnd(String eventName, {JsonMap? properties}) {
-    return _pigeon.trackTimerEnd(eventName, properties);
+    return _pigeon.trackTimerEnd(eventName, CommonPropertiesHelper.instance.insertDynamicCommonProperties(properties));
   }
 }
