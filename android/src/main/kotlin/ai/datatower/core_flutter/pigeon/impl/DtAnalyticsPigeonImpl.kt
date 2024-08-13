@@ -66,6 +66,10 @@ internal object DtAnalyticsPigeonImpl: DTAnalyticsPigeon {
         DTAnalytics.setAdjustId(id)
     }
 
+    override fun setTenjinId(id: String?) {
+        DTAnalytics.setTenjinId(id)
+    }
+
     override fun enableThirdPartySharing(type: Long) {
         DTAnalytics.enableThirdPartySharing(type.toInt())
     }

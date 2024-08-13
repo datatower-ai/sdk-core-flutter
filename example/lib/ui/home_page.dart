@@ -95,35 +95,53 @@ class BuiltInUserPropertiesSect extends StatelessWidget {
                   ?.copyWith(color: Theme.of(context).colorScheme.primary)),
         ),
         ClickSetText(
-            title: "Set #acid",
-            onConfirm: (str) {
-              DTAnalytics.setAccountId(str);
-              return str;
-            }),
+          title: "Set #acid",
+          onConfirm: (str) {
+            DTAnalytics.setAccountId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setAccountId(null),
+        ),
         ClickSetText(
-            title: "Set #latest_firebase_id",
-            onConfirm: (str) {
-              DTAnalytics.setFirebaseAppInstanceId(str);
-              return str;
-            }),
+          title: "Set #latest_firebase_id",
+          onConfirm: (str) {
+            DTAnalytics.setFirebaseAppInstanceId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setFirebaseAppInstanceId(null),
+        ),
         ClickSetText(
-            title: "Set #latest_appsflyer_id",
-            onConfirm: (str) {
-              DTAnalytics.setAppsFlyerId(str);
-              return str;
-            }),
+          title: "Set #latest_appsflyer_id",
+          onConfirm: (str) {
+            DTAnalytics.setAppsFlyerId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setAppsFlyerId(null),
+        ),
         ClickSetText(
-            title: "Set #latest_kochava_id",
-            onConfirm: (str) {
-              DTAnalytics.setKochavaId(str);
-              return str;
-            }),
+          title: "Set #latest_kochava_id",
+          onConfirm: (str) {
+            DTAnalytics.setKochavaId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setKochavaId(null),
+        ),
         ClickSetText(
-            title: "Set #latest_adjust_id",
-            onConfirm: (str) {
-              DTAnalytics.setAdjustId(str);
-              return str;
-            }),
+          title: "Set #latest_adjust_id",
+          onConfirm: (str) {
+            DTAnalytics.setAdjustId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setAdjustId(null),
+        ),
+        ClickSetText(
+          title: "Set #latest_tenjin_id",
+          onConfirm: (str) {
+            DTAnalytics.setTenjinId(str);
+            return str;
+          },
+          onClear: () => DTAnalytics.setTenjinId(null),
+        )
       ],
     );
   }

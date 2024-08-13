@@ -42,6 +42,8 @@ abstract class DTAnalyticsPigeon {
 
   void setAdjustId(String? id);
 
+  void setTenjinId(String? id);
+
   void enableThirdPartySharing(int type);
 
   void setStaticCommonProperties(Map<String, Object> properties);

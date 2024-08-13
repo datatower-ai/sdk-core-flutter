@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class ClickSetText extends StatefulWidget {
   final String title;
   final String? Function(String? value) onConfirm;
+  final void Function() onClear;
 
   const ClickSetText({
     super.key,
     required this.title,
     required this.onConfirm,
+    required this.onClear,
   });
 
   @override
@@ -46,11 +48,21 @@ class _State extends State<ClickSetText> {
                       ),
                       TextButton(
                         onPressed: () {
+                          inputted = null;
+                          Navigator.pop(context, () {
+                            widget.onClear();
+                            return "";
+                          });
+                        },
+                        child: const Text("Clear"),
+                      ),
+                      TextButton(
+                        onPressed: () {
                           lastConfirmed = inputted;
                           Navigator.pop(
                               context, widget.onConfirm(lastConfirmed));
                         },
-                        child: const Text("Confirm"),
+                        child: const Text("Set"),
                       )
                     ],
                   ));

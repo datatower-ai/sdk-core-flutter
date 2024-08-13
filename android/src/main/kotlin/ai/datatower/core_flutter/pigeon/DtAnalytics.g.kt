@@ -58,6 +58,7 @@ interface DTAnalyticsPigeon {
   fun setAppsFlyerId(id: String?)
   fun setKochavaId(id: String?)
   fun setAdjustId(id: String?)
+  fun setTenjinId(id: String?)
   fun enableThirdPartySharing(type: Long)
   fun setStaticCommonProperties(properties: Map<String, Any>)
   fun clearStaticCommonProperties()
@@ -325,6 +326,25 @@ interface DTAnalyticsPigeon {
             var wrapped: List<Any?>
             try {
               api.setAdjustId(idArg)
+              wrapped = listOf<Any?>(null)
+            } catch (exception: Throwable) {
+              wrapped = wrapError(exception)
+            }
+            reply.reply(wrapped)
+          }
+        } else {
+          channel.setMessageHandler(null)
+        }
+      }
+      run {
+        val channel = BasicMessageChannel<Any?>(binaryMessenger, "dev.flutter.pigeon.datatower_ai_core.DTAnalyticsPigeon.setTenjinId$separatedMessageChannelSuffix", codec)
+        if (api != null) {
+          channel.setMessageHandler { message, reply ->
+            val args = message as List<Any?>
+            val idArg = args[0] as String?
+            var wrapped: List<Any?>
+            try {
+              api.setTenjinId(idArg)
               wrapped = listOf<Any?>(null)
             } catch (exception: Throwable) {
               wrapped = wrapError(exception)

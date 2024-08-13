@@ -106,6 +106,13 @@ class DTAnalytics {
     return _pigeon.setAdjustId(id);
   }
 
+  /// 设置 Tenjin id
+  ///
+  /// - [id] adjust id
+  static Future<void> setTenjinId(String? id) {
+    return _pigeon.setTenjinId(id);
+  }
+
   /// 透传 dt_id 至三方归因平台
   ///
   /// - [type] 归因平台：

@@ -29,6 +29,7 @@ NSObject<FlutterMessageCodec> *DTDTAnalyticsPigeonGetCodec(void);
 - (void)setAppsFlyerIdId:(nullable NSString *)id error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setKochavaIdId:(nullable NSString *)id error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setAdjustIdId:(nullable NSString *)id error:(FlutterError *_Nullable *_Nonnull)error;
+- (void)setTenjinIdId:(nullable NSString *)id error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)enableThirdPartySharingType:(NSInteger)type error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)setStaticCommonPropertiesProperties:(NSDictionary<NSString *, id> *)properties error:(FlutterError *_Nullable *_Nonnull)error;
 - (void)clearStaticCommonPropertiesWithError:(FlutterError *_Nullable *_Nonnull)error;
