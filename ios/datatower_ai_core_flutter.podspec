@@ -16,7 +16,7 @@ A new Flutter plugin project.
   s.source_files = 'Classes/**/*'
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
-  s.dependency 'DataTowerAiCore', '~> 3.0.0'
+  s.dependency 'DataTowerAiCore', '~> 3.0.3'
   s.platform = :ios, '11.0'
   s.static_framework = true
 

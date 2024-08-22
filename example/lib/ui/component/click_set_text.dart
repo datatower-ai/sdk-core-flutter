@@ -30,7 +30,7 @@ class _State extends State<ClickSetText> {
           return showDialog<String?>(
               context: context,
               barrierDismissible: false,
-              builder: (context) => AlertDialog(
+              builder: (_) => AlertDialog(
                     title: Text(widget.title),
                     content: TextField(
                       controller: TextEditingController()
@@ -49,10 +49,8 @@ class _State extends State<ClickSetText> {
                       TextButton(
                         onPressed: () {
                           inputted = null;
-                          Navigator.pop(context, () {
-                            widget.onClear();
-                            return "";
-                          });
+                          widget.onClear();
+                          Navigator.pop(context, "");
                         },
                         child: const Text("Clear"),
                       ),

@@ -10,10 +10,10 @@
 
 @implementation DTBridge
 
-- (void)initSDKAppId:(nonnull NSString *)appId url:(nonnull NSString *)url channel:(nonnull NSString *)channel isDebug:(nonnull NSNumber *)isDebug logLevel:(DTDTLogLevel)logLevel commonProperties:(nonnull NSDictionary<NSString *,id> *)commonProperties error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
+- (void)initSDKAppId:(NSString *)appId url:(NSString *)url channel:(NSString *)channel isDebug:(BOOL)isDebug logLevel:(DTDTLogLevel)logLevel manualEnableUpload:(BOOL)manualEnableUpload commonProperties:(NSDictionary<NSString *, id> *)commonProperties error:(FlutterError *_Nullable *_Nonnull)error {
     
     DTLoggingLevel iOSLogLevel = [self convertFlutterLogLevel:logLevel];
-    [DT initSDK:appId serverUrl:url channel:DTChannelAppStore isDebug:[isDebug boolValue] logLevel:iOSLogLevel commonProperties:commonProperties];
+    [DT initSDK:appId serverUrl:url channel:DTChannelAppStore isDebug:isDebug logLevel:iOSLogLevel commonProperties:commonProperties enableTrack:!manualEnableUpload];
 }
 
 - (DTLoggingLevel)convertFlutterLogLevel:(DTDTLogLevel)fltLogLevel {
@@ -24,6 +24,10 @@
         ret = DTLoggingLevelInfo;
     } 
     return ret;
+}
+
+- (void)enableUploadWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
+    [DTAnalytics setEnableTracking:enable];
 }
 
 @end

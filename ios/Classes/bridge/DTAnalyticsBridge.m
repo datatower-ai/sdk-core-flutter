@@ -45,6 +45,11 @@
     [DTAnalytics setKochavaId:id];
 }
 
+- (void)setTenjinIdId:(nullable NSString *)id error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
+
+    [DTAnalytics setTenjinId:id];
+}
+
 - (void)trackEventEventName:(nonnull NSString *)eventName properties:(nonnull NSDictionary<NSString *,id> *)properties error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
     
     [DTAnalytics trackEventName:eventName properties:properties];
@@ -84,6 +89,16 @@
     for (NSString *unsetProp in properties) {
         [DTAnalytics userUnset:unsetProp];
     }
+}
+
+- (void)setStaticCommonPropertiesProperties:(nonnull NSDictionary<NSString *,id> *)properties error:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
+
+    [DTAnalytics setSuperProperties:properties];
+}
+
+- (void)clearStaticCommonPropertiesWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
+    NSDictionary *dictParam = [NSDictionary new];
+    [DTAnalytics setSuperProperties:dictParam];
 }
 
 @end
