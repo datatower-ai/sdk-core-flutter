@@ -16,12 +16,11 @@
                                      binaryMessenger:[registrar messenger]];
     DatatowerAiCoreFlutterPlugin* instance = [[DatatowerAiCoreFlutterPlugin alloc] init];
     [registrar addMethodCallDelegate:instance channel:channel];
-    
-    
-    DTDTPigeonSetup([registrar messenger], [[DTBridge alloc] init]);
-    DTDTAdPigeonSetup([registrar messenger], [[DTAdBridge alloc] init]);
-    DTDTAnalyticsPigeonSetup([registrar messenger], [[DTAnalyticsBridge alloc] init]);
-    DTDTAnalyticsUtilPigeonSetup([registrar messenger], [[DTUtilBridge alloc] init]);
+
+    SetUpDTDTPigeon([registrar messenger], [[DTBridge alloc] init]);
+    SetUpDTDTAdPigeon([registrar messenger], [[DTAdBridge alloc] init]);
+    SetUpDTDTAnalyticsPigeon([registrar messenger], [[DTAnalyticsBridge alloc] init]);
+    SetUpDTDTAnalyticsUtilPigeon([registrar messenger], [[DTUtilBridge alloc] init]);
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {

@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 #import "dt_ad.g.h"
-#import <datatower_ai_core/DTAdReport.h>
+#import <DataTowerAICore/DTAdReport.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

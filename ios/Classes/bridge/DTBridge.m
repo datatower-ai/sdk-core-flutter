@@ -6,7 +6,7 @@
 //
 
 #import "DTBridge.h"
-#import <datatower_ai_core/DT.h>
+#import <DataTowerAICore/DT.h>
 
 @implementation DTBridge
 
@@ -27,7 +27,7 @@
 }
 
 - (void)enableUploadWithError:(FlutterError * _Nullable __autoreleasing * _Nonnull)error {
-    [DTAnalytics setEnableTracking:enable];
+    [DTAnalytics setEnableTracking:true];
 }
 
 @end

@@ -6,7 +6,7 @@
 //
 
 #import "DTUtilBridge.h"
-#import <datatower_ai_core/DTAnalyticsUtils.h>
+#import <DataTowerAICore/DTAnalyticsUtils.h>
 
 @implementation DTUtilBridge
 

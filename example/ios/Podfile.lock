@@ -1,15 +1,15 @@
 PODS:
   - datatower_ai_core (0.0.2):
-    - DataTowerAICore (~> 2.1.0)
+    - DataTowerAICore (~> 3.0.3)
     - Flutter
-  - DataTowerAICore (2.1.0)
+  - DataTowerAICore (3.0.3)
   - Flutter (1.0.0)
   - fluttertoast (0.0.2):
     - Flutter
     - Toast
   - integration_test (0.0.1):
     - Flutter
-  - Toast (4.0.0)
+  - Toast (4.1.1)
 
 DEPENDENCIES:
   - datatower_ai_core (from `.symlinks/plugins/datatower_ai_core/ios`)
@@ -33,13 +33,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/integration_test/ios"
 
 SPEC CHECKSUMS:
-  datatower_ai_core: 0187eea9fde097c328c34671be290a01223ababb
-  DataTowerAICore: 22e9cd96958421b032c7ae86be69f3338e007d6c
-  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  fluttertoast: fafc4fa4d01a6a9e4f772ecd190ffa525e9e2d9c
-  integration_test: 13825b8a9334a850581300559b8839134b124670
-  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
+  datatower_ai_core: 31f7d88ceabbeeda1e9881eadfe8b8e762c9b17b
+  DataTowerAICore: 81de21b621bda55383f9b0dc3ba0771e3d7d0b32
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  fluttertoast: 31b00dabfa7fb7bacd9e7dbee580d7a2ff4bf265
+  integration_test: ce0a3ffa1de96d1a89ca0ac26fca7ea18a749ef4
+  Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
 
-PODFILE CHECKSUM: 3fa3b71e93b773646ea923db9defae9e3f1717ab
+PODFILE CHECKSUM: beab77b38961de946f08660e554f80ac174dc842
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.15.2

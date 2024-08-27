@@ -6,7 +6,7 @@
 //
 
 #import "DTAdBridge.h"
-#import <datatower_ai_core/DTAdReport.h>
+#import <DataTowerAICore/DTAdReport.h>
 #import "DTEnumHelper.h"
 
 @implementation DTAdBridge
