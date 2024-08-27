@@ -13,6 +13,9 @@ import 'package:pigeon/pigeon.dart';
 ))
 @HostApi()
 abstract class DTIapPigeon {
-  void reportPurchaseSuccess(String order, String sku, double price,
-      String currency, Map<String, Object>? properties);
+  void reportPurchaseSuccessAndroid(String order, String sku, double price,
+      String currency, Map<String, Object> properties);
+
+  void reportPurchaseSuccessIos(String order, String sku, double price, 
+      String currency, String seq, String entrance);
 }

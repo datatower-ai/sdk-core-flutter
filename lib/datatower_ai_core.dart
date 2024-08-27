@@ -6,3 +6,5 @@ export 'package:datatower_ai_core/api/dt_analytics_util.dart';
 export 'package:datatower_ai_core/src/pigeon/dt.g.dart' show DTLogLevel;
 export 'package:datatower_ai_core/src/pigeon/dt_ad.g.dart'
     show AdTypeDart, AdMediationDart, AdPlatformDart;
+export 'package:datatower_ai_core/api/dt_iap.dart';
+export 'package:datatower_ai_core/api/dt_ias.dart';

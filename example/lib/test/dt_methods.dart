@@ -6,12 +6,16 @@
 
 import 'package:datatower_ai_core/api/dt.dart';
 import 'package:datatower_ai_core/api/dt_ad.dart';
+import 'package:datatower_ai_core/api/dt_iap.dart';
+import 'package:datatower_ai_core/api/dt_ias.dart';
 import 'package:datatower_ai_core/api/dt_analytics.dart';
 import 'package:datatower_ai_core/api/dt_analytics_util.dart';
 
 const List<DtApiMethodHolder> dtApiMethodHolders = [
   dtApiMethods4DT,
   dtApiMethods4DTAdReport,
+  dtApiMethods4DTIapReport,
+  dtApiMethods4DTIasReport,
   dtApiMethods4DTAnalytics,
   dtApiMethods4DTAnalyticsUtil
 ];
@@ -37,6 +41,20 @@ const DtApiMethodHolder dtApiMethods4DTAdReport =
   "reportLeftApp"
 ]);
 
+const DtApiMethodHolder dtApiMethods4DTIapReport =
+    DtApiMethodHolder("DTIapReport", [
+  "reportPurchaseSuccess",
+  "reportPurchaseSuccessAndroid",
+  "reportPurchaseSuccessIos"
+]);
+
+const DtApiMethodHolder dtApiMethods4DTIasReport =
+    DtApiMethodHolder("DTIasReport", [
+  "reportSubscribeSuccess",
+  "reportSubscribeSuccessAndroid",
+  "reportSubscribeSuccessIos"
+]);
+
 const DtApiMethodHolder dtApiMethods4DTAnalytics =
     DtApiMethodHolder("DTAnalytics", [
   "trackEvent",
@@ -53,6 +71,7 @@ const DtApiMethodHolder dtApiMethods4DTAnalytics =
   "setAppsFlyerId",
   "setKochavaId",
   "setAdjustId",
+  "setTenjinId",
   "enableThirdPartySharing",
   "setDynamicCommonProperties",
   "clearDynamicCommonProperties",
@@ -564,6 +583,104 @@ final Map<String, DtApiMethod> dtApiMethods = {
             ordered[4], ordered[5], ordered[6],
             properties: named["properties"], entrance: named["entrance"]);
       }),
+  "DTIapReport_reportPurchaseSuccess": DtApiMethod(
+      name: "DTIapReport",
+      orderedParamNames: ["order", "sku", "price", "currency", "seq"],
+      orderedParam: ["String", "String", "double", "String", "String"],
+      namedParam: {"entrance": "String", "properties": "Map<String, Object?>?"},
+      run: (ordered, named) {
+        DTIapReport.reportPurchaseSuccess(
+            ordered[0], ordered[1], ordered[2], ordered[3], ordered[4],
+            entrance: named["entrance"], properties: named["properties"]);
+      }),
+  "DTIapReport_reportPurchaseSuccessAndroid": DtApiMethod(
+      name: "DTIapReport",
+      orderedParamNames: ["order", "sku", "price", "currency"],
+      orderedParam: ["String", "String", "double", "String"],
+      namedParam: {"properties": "Map<String, Object?>?"},
+      run: (ordered, named) {
+        DTIapReport.reportPurchaseSuccessAndroid(
+            ordered[0], ordered[1], ordered[2], ordered[3],
+            properties: named["properties"]);
+      }),
+  "DTIapReport_reportPurchaseSuccessIos": DtApiMethod(
+      name: "DTIapReport",
+      orderedParamNames: ["order", "sku", "price", "currency", "seq"],
+      orderedParam: ["String", "String", "double", "String", "String"],
+      namedParam: {"entrance": "String"},
+      run: (ordered, named) {
+        DTIapReport.reportPurchaseSuccessIos(
+            ordered[0], ordered[1], ordered[2], ordered[3], ordered[4],
+            entrance: named["entrance"]);
+      }),
+  "DTIasReport_reportSubscribeSuccess": DtApiMethod(
+      name: "DTIasReport",
+      orderedParamNames: [
+        "originalOrderId",
+        "orderId",
+        "sku",
+        "price",
+        "currency",
+        "seq",
+        "placement"
+      ],
+      orderedParam: [
+        "String",
+        "String",
+        "String",
+        "double",
+        "String",
+        "String",
+        "String"
+      ],
+      namedParam: {"entrance": "String", "properties": "Map<String, Object?>?"},
+      run: (ordered, named) {
+        DTIasReport.reportSubscribeSuccess(ordered[0], ordered[1], ordered[2],
+            ordered[3], ordered[4], ordered[5], ordered[6],
+            entrance: named["entrance"], properties: named["properties"]);
+      }),
+  "DTIasReport_reportSubscribeSuccessAndroid": DtApiMethod(
+      name: "DTIasReport",
+      orderedParamNames: [
+        "originalOrderId",
+        "orderId",
+        "sku",
+        "price",
+        "currency"
+      ],
+      orderedParam: ["String", "String", "String", "double", "String"],
+      namedParam: {"properties": "Map<String, Object?>?"},
+      run: (ordered, named) {
+        DTIasReport.reportSubscribeSuccessAndroid(
+            ordered[0], ordered[1], ordered[2], ordered[3], ordered[4],
+            properties: named["properties"]);
+      }),
+  "DTIasReport_reportSubscribeSuccessIos": DtApiMethod(
+      name: "DTIasReport",
+      orderedParamNames: [
+        "seq",
+        "placement",
+        "sku",
+        "orderId",
+        "originalOrderId",
+        "price",
+        "currency"
+      ],
+      orderedParam: [
+        "String",
+        "String",
+        "String",
+        "String",
+        "String",
+        "String",
+        "String"
+      ],
+      namedParam: {"entrance": "String"},
+      run: (ordered, named) {
+        DTIasReport.reportSubscribeSuccessIos(ordered[0], ordered[1],
+            ordered[2], ordered[3], ordered[4], ordered[5], ordered[6],
+            entrance: named["entrance"]);
+      }),
   "DTAnalytics_trackEvent": DtApiMethod(
       name: "DTAnalytics",
       orderedParamNames: ["eventName", "properties"],
@@ -698,6 +815,16 @@ final Map<String, DtApiMethod> dtApiMethods = {
       namedParam: {},
       run: (ordered, named) {
         DTAnalytics.setAdjustId(
+          ordered[0],
+        );
+      }),
+  "DTAnalytics_setTenjinId": DtApiMethod(
+      name: "DTAnalytics",
+      orderedParamNames: ["id"],
+      orderedParam: ["String?"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalytics.setTenjinId(
           ordered[0],
         );
       }),
