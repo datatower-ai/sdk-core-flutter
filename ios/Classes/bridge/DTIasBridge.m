@@ -3,11 +3,12 @@
 
 @implementation DTIasBridge
 
-- (void)reportSubscribeSuccessAndroidOriginalOrderId:(NSString *)originalOrderId orderId:(NSString *)orderId sku:(NSString *)sku price:(double)price currency:(NSString *)currency properties:(nullable NSDictionary<NSString *, id> *)properties error:(FlutterError *_Nullable *_Nonnull)error {
+- (void)reportSubscribeSuccessAndroidOriginalOrderId:(NSString *)originalOrderId orderId:(NSString *)orderId sku:(NSString *)sku price:(double)price currency:(NSString *)currency properties:( NSDictionary<NSString *, id> *)properties error:(FlutterError *_Nullable *_Nonnull)error {
     // Android only
 }
 
-- (void)reportSubscribeSuccessIosSeq:(NSString *)seq placement:(NSString *)placement sku:(NSString *)sku orderId:(NSString *)orderId originalOrderId:(NSString *)originalOrderId price:(NSString *)price currency:(NSString *)currency entrance:(NSString *)entrance error:(FlutterError *_Nullable *_Nonnull)error {
+- (void)reportSubscribeSuccessIosSeq:(NSString *)iasSeq placement:(NSString *)iasPlacement sku:(NSString *)iasSku orderId:(NSString *)iasOrderId originalOrderId:(NSString *)iasOriginalOrderId price:(NSString *)iasPrice currency:(NSString *)iasCurrency entrance:(NSString *)iasEntrance error:(FlutterError *)error {
+    
     [DTIASReport reportSubscribeSuccess:iasSeq  entrance:iasEntrance placement:iasPlacement sku:iasSku orderId:iasOrderId originalOrderId:iasOriginalOrderId price:iasPrice currency:iasCurrency properties:@{}];
 }
 

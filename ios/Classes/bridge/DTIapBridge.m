@@ -3,7 +3,7 @@
 
 @implementation DTIapBridge
 
-- (void)reportPurchaseSuccessAndroidOrder:(NSString *)order sku:(NSString *)sku price:(double)price currency:(NSString *)currency properties:(nullable NSDictionary<NSString *, id> *)properties error:(FlutterError *_Nullable *_Nonnull)error {
+- (void)reportPurchaseSuccessAndroidOrder:(NSString *)order sku:(NSString *)sku price:(double)price currency:(NSString *)currency properties:(NSDictionary<NSString *, id> *)properties error:(FlutterError *)error {
     // Android only
 }
 
