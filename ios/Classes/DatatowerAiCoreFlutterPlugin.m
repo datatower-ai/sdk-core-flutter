@@ -3,11 +3,15 @@
 #import "dt_ad.g.h"
 #import "dt_analytics.g.h"
 #import "dt_analytics_util.g.h"
+#import "dt_iap.g.h"
+#import "dt_ias.g.h"
 
 #import "DTBridge.h"
 #import "DTAdBridge.h"
 #import "DTUtilBridge.h"
 #import "DTAnalyticsBridge.h"
+#import "DTIapBridge.h"
+#import "DTIasBridge.h"
 
 @implementation DatatowerAiCoreFlutterPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
@@ -21,6 +25,8 @@
     SetUpDTDTAdPigeon([registrar messenger], [[DTAdBridge alloc] init]);
     SetUpDTDTAnalyticsPigeon([registrar messenger], [[DTAnalyticsBridge alloc] init]);
     SetUpDTDTAnalyticsUtilPigeon([registrar messenger], [[DTUtilBridge alloc] init]);
+    SetUpDTDTIapPigeon([registrar messenger], [[DTIapBridge alloc] init]);
+    SetUpDTDTIasPigeon([registrar messenger], [[DTIasBridge alloc] init]);
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
