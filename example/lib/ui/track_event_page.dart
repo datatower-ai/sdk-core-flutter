@@ -88,8 +88,8 @@ class _State extends State<TrackEventPage> {
                 _RunButton(
                     interval: interval,
                     repeats: repeat,
-                    eventName: eventName,
-                    properties: properties)
+                    eventName: () => eventName,
+                    properties: () => properties)
               ],
             )),
       ),
@@ -100,11 +100,12 @@ class _State extends State<TrackEventPage> {
 class _RunButton extends StatefulWidget {
   final int interval;
   final int repeats;
-  final String eventName;
-  final String properties;
+  final String Function() eventName;
+  final String Function() properties;
 
   const _RunButton(
-      {required this.interval,
+      {super.key,
+      required this.interval,
       required this.repeats,
       required this.eventName,
       required this.properties});
@@ -131,16 +132,16 @@ class _RunButtonState extends State<_RunButton> {
               setState(() {
                 repeated = 0;
               });
-              if (widget.eventName.isNotEmpty) {
+              if (widget.eventName.call().isNotEmpty) {
                 final repeats = widget.repeats > 1 ? widget.repeats : 1;
                 for (var i = 1; i <= repeats; ++i) {
                   Future.delayed(
                       Duration(milliseconds: widget.interval * (i - 1)), () {
                     DTAnalytics.trackEvent(
-                        widget.eventName,
-                        widget.properties.isEmpty
+                        widget.eventName.call(),
+                        widget.properties.call().isEmpty
                             ? null
-                            : jsonDecode(widget.properties));
+                            : jsonDecode(widget.properties.call()));
                     setState(() {
                       repeated = i;
                     });
