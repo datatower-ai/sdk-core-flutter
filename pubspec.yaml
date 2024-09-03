@@ -1,6 +1,6 @@
 name: datatower_ai_core
 description: "DataTower.ai core SDK for Flutter. Provided feature of Event Tracking, Timing Event Tracking, User Property, Ad Flow Tracking, Attribution Integration and etc."
-homepage: https://datatower.ai
+homepage: https://datatower.ai/
 version: 3.0.0
 
 environment:

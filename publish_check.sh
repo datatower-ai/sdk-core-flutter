@@ -32,7 +32,7 @@ android_sdk_ver=$(grep "ai.datatower:core" < "$project_path/android/build.gradle
 android_sdk_ver_suffix=$(echo "$android_sdk_ver"| sed -n "s/.*+$/(dynamic)/gp")
 echo "┃ Used version of \033[1mDT Android\033[0m：\033[4m$android_sdk_ver\033[0m $android_sdk_ver_suffix"
 
-ios_sdk_ver=$(grep "DataTowerAiCore" < "$project_path/ios/datatower_ai_core_flutter.podspec" | sed -n "s/^.*'DataTowerAiCore'.*'\(.*\)'/\1/gp")
+ios_sdk_ver=$(grep "DataTowerAICore" < "$project_path/ios/datatower_ai_core.podspec" | sed -n "s/^.*'DataTowerAICore'.*'\(.*\)'/\1/gp")
 ios_sdk_ver_suffix=$(echo "$ios_sdk_ver"| sed -n "s/^~>.*/(dynamic)/gp")
 echo "┃ Used version of \033[1mDT iOS\033[0m：\033[4m$ios_sdk_ver\033[0m $ios_sdk_ver_suffix"
 
