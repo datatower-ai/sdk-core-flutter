@@ -4,6 +4,8 @@ import 'package:datatower_ai_core_example/ui/component/click_set_text.dart';
 import 'package:datatower_ai_core_example/ui/component/clickable_text.dart';
 import 'package:flutter/material.dart';
 
+import 'init_page.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -265,8 +267,21 @@ class AllApiSect extends StatelessWidget {
   }
 }
 
-class OthersSect extends StatelessWidget {
+class OthersSect extends StatefulWidget {
   const OthersSect({super.key});
+
+  @override
+  State<OthersSect> createState() => _OthersSectState();
+}
+
+class _OthersSectState extends State<OthersSect> {
+  @override
+  void initState() {
+    super.initState();
+    for (var it in DTPresetEvent.values) {
+      presetEventEnabled[it] = true;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -288,7 +303,35 @@ class OthersSect extends StatelessWidget {
             onClick: () async {
               DT.enableUpload();
               return null;
-            })
+            }),
+        ...DTPresetEvent.values.map((presetEvent) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            child: Row(
+              children: [
+                Expanded(child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(presetEvent.name, style: Theme.of(context).textTheme.titleMedium, maxLines: 1,),
+                    Text("Preset Event (per cold boot)", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Theme.of(context).colorScheme.outline), maxLines: 1,)
+                  ],
+                )),
+                Switch(
+                    value: presetEventEnabled[presetEvent] ?? true,
+                    onChanged: (_) => setState(() {
+                      if (presetEventEnabled[presetEvent] ?? true) {
+                        presetEventEnabled[presetEvent] = false;
+                        DT.disableAutoTrack(presetEvent);
+                      } else {
+                        presetEventEnabled[presetEvent] = true;
+                        DT.enableAutoTrack(presetEvent);
+                      }
+                    })
+                ),
+              ],
+            ),
+          );
+        }),
       ],
     );
   }

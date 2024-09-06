@@ -18,6 +18,11 @@ enum DTLogLevel {
   WARN,
   ERROR,
 }
+enum DTPresetEvent {
+  Install,
+  SessionStart,
+  SessionEnd,
+}
 
 @HostApi()
 abstract class DTPigeon {
@@ -32,4 +37,8 @@ abstract class DTPigeon {
   );
 
   void enableUpload();
+
+  void enableAutoTrack(DTPresetEvent presetEvent);
+
+  void disableAutoTrack(DTPresetEvent presetEvent);
 }

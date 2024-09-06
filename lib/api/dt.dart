@@ -45,4 +45,12 @@ class DT {
   static void enableUpload() {
     _pigeon.enableUpload();
   }
+
+  static void enableAutoTrack(DTPresetEvent presetEvent) {
+    _pigeon.enableAutoTrack(presetEvent);
+  }
+
+  static void disableAutoTrack(DTPresetEvent presetEvent) {
+    _pigeon.disableAutoTrack(presetEvent);
+  }
 }
