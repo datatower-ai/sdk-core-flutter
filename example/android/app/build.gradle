@@ -70,6 +70,4 @@ flutter {
     source '../..'
 }
 
-dependencies {
-    //implementation fileTree(dir: '../../android/lib', includes: ['*.aar'])    // FOR LOCAL TEST
-}
+dependencies {}
