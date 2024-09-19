@@ -1,5 +1,6 @@
 import 'package:datatower_ai_core_example/bean/sdk_info.dart';
 import 'package:datatower_ai_core_example/ui/common_properties_page.dart';
+import 'package:datatower_ai_core_example/ui/dev_test_page.dart';
 import 'package:datatower_ai_core_example/ui/home_page.dart';
 import 'package:datatower_ai_core_example/ui/init_page.dart';
 import 'package:datatower_ai_core_example/ui/show_all_api_page.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
+  initNoti();
 }
 
 class MyApp extends StatefulWidget {
@@ -32,6 +34,7 @@ class _MyAppState extends State<MyApp> {
           "/user_related_api": (_) => const UserRelatedApiPage(),
           "/show_all_api": (_) => const ShowAllApiPage(),
           "/common_properties": (_) => const CommonPropertiesPage(),
+          "/dev_test": (_) => const DevTestPage(),
         },
         initialRoute: sdkInfo == null ? "/init" : "/home");
   }

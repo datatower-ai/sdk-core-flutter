@@ -1,3 +1,11 @@
+# 3.1.0
+
+* NEW: Supports to disable preset properties through config file.
+* NEW: Supports to toggle preset event 
+  * DT.enableAutoTrack(DTPresetEvent)
+  * DT.disableAutoTrack(DTPresetEvent)
+* UPDATE: Cutting out unnecessary event uploading at the initialization stage.
+
 # 3.0.0
 
 > &#x2753; How to migrate?

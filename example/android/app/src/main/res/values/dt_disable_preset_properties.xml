@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="DTDisPresetProperties">
+        <item>#os</item>
+        <item>#fps</item>
+        <item>#active_os</item>
+        <item>#active_build_device</item>
+        <item>#background_duration</item>
+    </string-array>
+</resources>

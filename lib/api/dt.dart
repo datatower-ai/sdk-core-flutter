@@ -6,7 +6,7 @@ import 'package:datatower_ai_core/src/base/dt_api.dart';
 @DTApi()
 class DT {
   /// Version name, should be equivalent to 'version' in pubspec.yaml
-  static const _versionName = "3.0.0";
+  static const _versionName = "3.1.0";
 
   static final DTPigeon _pigeon = DTPigeon();
 
@@ -44,5 +44,13 @@ class DT {
 
   static void enableUpload() {
     _pigeon.enableUpload();
+  }
+
+  static void enableAutoTrack(DTPresetEvent presetEvent) {
+    _pigeon.enableAutoTrack(presetEvent);
+  }
+
+  static void disableAutoTrack(DTPresetEvent presetEvent) {
+    _pigeon.disableAutoTrack(presetEvent);
   }
 }

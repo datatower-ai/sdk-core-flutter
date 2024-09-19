@@ -24,6 +24,9 @@ dependencies:
     # the parent directory to use the current plugin's version.
     path: ../
   fluttertoast: ^8.2.2
+  flutter_local_notifications: ^17.2.2
+  timezone: ^0.9.4
+  flutter_timezone: ^3.0.1
 
 dev_dependencies:
   integration_test:
