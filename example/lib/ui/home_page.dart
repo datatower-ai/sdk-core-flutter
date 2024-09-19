@@ -261,6 +261,13 @@ class AllApiSect extends StatelessWidget {
             onClick: () async {
               Navigator.pushNamed(context, "/show_all_api");
               return null;
+            }),
+        ClickableText(
+            title: "Dev Test Page",
+            initText: "dev test",
+            onClick: () async {
+              Navigator.pushNamed(context, "/dev_test");
+              return null;
             })
       ],
     );

@@ -107,6 +107,8 @@ class _RunApiDialogState extends State<RunApiDialog> {
       List.filled(widget.dtApiMethod.orderedParam.length, null);
   final Map<String, dynamic> namedParam = {};
 
+  final Map<String, bool> isNullMap = {};
+
   @override
   void initState() {
     super.initState();
@@ -124,81 +126,78 @@ class _RunApiDialogState extends State<RunApiDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog.fullscreen(
-        child: Scaffold(
-      appBar: AppBar(title: Text("${widget.className}\n${widget.methodName}")),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-              child: Scrollbar(
-                  child: SingleChildScrollView(
-            child: Padding(
+      child: Scaffold(
+        appBar: AppBar(title: Text("${widget.className}\n${widget.methodName}")),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(child: Scrollbar(child: SingleChildScrollView(
+              child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 20),
+                      for (var (i, name) in widget.dtApiMethod.orderedParamNames.indexed) ...[
+                        getWidgetByTypeWrapper(
+                          type: widget.dtApiMethod.orderedParam[i],
+                          name: name,
+                          getValue: () => orderedParam[i],
+                          setValue: (v) => orderedParam[i] = v,
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                      for (var entry in widget.dtApiMethod.namedParam.entries) ...[
+                        getWidgetByTypeWrapper(
+                          type: entry.value,
+                          name: entry.key,
+                          getValue: () => namedParam[entry.key],
+                          setValue: (v) => namedParam[entry.key] = v,
+                        ),
+                        const SizedBox(height: 20),
+                      ],
+                    ],
+                  )),
+            ))),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const SizedBox(height: 20),
-                    for (var (i, name)
-                        in widget.dtApiMethod.orderedParamNames.indexed) ...[
-                      getWidgetByType(
-                        type: widget.dtApiMethod.orderedParam[i],
-                        name: name,
-                        getValue: () => orderedParam[i],
-                        setValue: (v) => orderedParam[i] = v,
-                      ),
-                      const SizedBox(height: 20),
-                    ],
-                    for (var entry
-                        in widget.dtApiMethod.namedParam.entries) ...[
-                      getWidgetByType(
-                        type: entry.value,
-                        name: entry.key,
-                        getValue: () => namedParam[entry.key],
-                        setValue: (v) => namedParam[entry.key] = v,
-                      ),
-                      const SizedBox(height: 20),
-                    ],
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Cancel"),
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    FilledButton(
+                      onPressed: () {
+                        debugPrint("=" * 80);
+                        debugPrint(
+                            "Run for [${widget.className}] ${widget.methodName}");
+                        debugPrint("orderedParam: $orderedParam");
+                        debugPrint("namedParam: $namedParam");
+                        debugPrint("=" * 80);
+
+                        widget.dtApiMethod.run(orderedParam, namedParam);
+                        Navigator.pop(context);
+                      },
+                      child: const Text("Run"),
+                    )
                   ],
                 )),
-          ))),
-          const SizedBox(
-            height: 10,
-          ),
-          Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Cancel"),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  FilledButton(
-                    onPressed: () {
-                      debugPrint("=" * 80);
-                      debugPrint(
-                          "Run for [${widget.className}] ${widget.methodName}");
-                      debugPrint("orderedParam: $orderedParam");
-                      debugPrint("namedParam: $namedParam");
-                      debugPrint("=" * 80);
-
-                      widget.dtApiMethod.run(orderedParam, namedParam);
-                      Navigator.pop(context);
-                    },
-                    child: const Text("Run"),
-                  )
-                ],
-              )),
-          const SizedBox(
-            height: 10,
-          ),
-        ],
-      ),
-    ));
+            const SizedBox(
+              height: 10,
+            ),
+          ],
+        ),
+      )
+    );
   }
 
   dynamic getDefaultValue(String type, [String? name]) {
@@ -225,6 +224,32 @@ class _RunApiDialogState extends State<RunApiDialog> {
     } else {
       return null;
     }
+  }
+
+  Widget getWidgetByTypeWrapper({
+    required String type,
+    required String name,
+    required dynamic Function() getValue,
+    required void Function(dynamic) setValue,
+  }) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        getWidgetByType(type: type, name: name, getValue: getValue, setValue: setValue),
+        if (type.endsWith("?")) Row(
+          children: [
+            Checkbox(value: isNullMap[name] ?? false, onChanged: (it) {
+              setState(() {
+                setValue(null);
+                isNullMap[name] = it ?? false;
+              });
+            }),
+            const SizedBox(width: 16,),
+            const Text("null"),
+          ],
+        )
+      ],
+    );
   }
 
   Widget getWidgetByType({
