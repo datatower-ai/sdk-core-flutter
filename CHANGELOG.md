@@ -1,4 +1,5 @@
-# 3.1.0
+# 3.1.0-beta1
+> NOTICE: This version is for Android ONLY! 
 
 * NEW: Supports to disable preset properties through config file.
 * NEW: Supports to toggle preset event 

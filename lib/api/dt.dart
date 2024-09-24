@@ -6,7 +6,7 @@ import 'package:datatower_ai_core/src/base/dt_api.dart';
 @DTApi()
 class DT {
   /// Version name, should be equivalent to 'version' in pubspec.yaml
-  static const _versionName = "3.1.0";
+  static const _versionName = "3.1.0-beta1";
 
   static final DTPigeon _pigeon = DTPigeon();
 
