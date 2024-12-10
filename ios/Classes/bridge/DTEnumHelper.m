@@ -249,6 +249,10 @@
             ret = DTAdMediationToBid;
             break;
             
+        case DTAdMediationDartADMOB:
+            ret = DTAdMediationAdmob;
+            break;
+            
         default:
             break;
     }
