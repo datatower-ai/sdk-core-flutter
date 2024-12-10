@@ -30,5 +30,13 @@
     [DTAnalytics setEnableTracking:true];
 }
 
+- (void)enableAutoTrackPresetEvent:(DTDTPresetEvent)presetEvent error:(FlutterError *_Nullable *_Nonnull)errorn {
+    
+}
+
+- (void)disableAutoTrackPresetEvent:(DTDTPresetEvent)presetEvent error:(FlutterError *_Nullable *_Nonnull)error {
+    
+}
+
 @end
 
