@@ -1,7 +1,7 @@
 name: datatower_ai_core
-description: "DataTower.ai core SDK for Flutter. Provided feature of Event Tracking, Timing Event Tracking, User Property, Ad Flow Tracking, Attribution Integration and etc."
+description: 'DataTower.ai core SDK for Flutter. Provided feature of Event Tracking, Timing Event Tracking, User Property, Ad Flow Tracking, Attribution Integration and etc.'
 homepage: https://datatower.ai/
-version: 3.1.0-beta1
+version: 3.0.1
 
 environment:
   sdk: '>=3.0.0 <4.0.0'
@@ -44,7 +44,6 @@ flutter:
         pluginClass: DatatowerAiCoreFlutterPlugin
       ios:
         pluginClass: DatatowerAiCoreFlutterPlugin
-
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -55,7 +54,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
-
   # To add custom fonts to your plugin package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a

@@ -5,19 +5,19 @@
 // **************************************************************************
 
 import 'package:datatower_ai_core/api/dt_ias.dart';
-import 'package:datatower_ai_core/api/dt.dart';
 import 'package:datatower_ai_core/api/dt_iap.dart';
 import 'package:datatower_ai_core/api/dt_ad.dart';
-import 'package:datatower_ai_core/api/dt_analytics.dart';
 import 'package:datatower_ai_core/api/dt_analytics_util.dart';
+import 'package:datatower_ai_core/api/dt.dart';
+import 'package:datatower_ai_core/api/dt_analytics.dart';
 
 const List<DtApiMethodHolder> dtApiMethodHolders = [
   dtApiMethods4DTIasReport,
-  dtApiMethods4DT,
   dtApiMethods4DTIapReport,
   dtApiMethods4DTAdReport,
-  dtApiMethods4DTAnalytics,
-  dtApiMethods4DTAnalyticsUtil
+  dtApiMethods4DTAnalyticsUtil,
+  dtApiMethods4DT,
+  dtApiMethods4DTAnalytics
 ];
 
 const DtApiMethodHolder dtApiMethods4DTIasReport =
@@ -26,9 +26,6 @@ const DtApiMethodHolder dtApiMethods4DTIasReport =
   "reportSubscribeSuccessAndroid",
   "reportSubscribeSuccessIos"
 ]);
-
-const DtApiMethodHolder dtApiMethods4DT =
-    DtApiMethodHolder("DT", ["initSDK", "enableUpload"]);
 
 const DtApiMethodHolder dtApiMethods4DTIapReport =
     DtApiMethodHolder("DTIapReport", [
@@ -55,6 +52,17 @@ const DtApiMethodHolder dtApiMethods4DTAdReport =
   "reportLeftApp"
 ]);
 
+const DtApiMethodHolder dtApiMethods4DTAnalyticsUtil = DtApiMethodHolder(
+    "DTAnalyticsUtil", [
+  "trackTimerStart",
+  "trackTimerPause",
+  "trackTimerResume",
+  "trackTimerEnd"
+]);
+
+const DtApiMethodHolder dtApiMethods4DT = DtApiMethodHolder(
+    "DT", ["initSDK", "enableUpload", "enableAutoTrack", "disableAutoTrack"]);
+
 const DtApiMethodHolder dtApiMethods4DTAnalytics =
     DtApiMethodHolder("DTAnalytics", [
   "trackEvent",
@@ -77,14 +85,6 @@ const DtApiMethodHolder dtApiMethods4DTAnalytics =
   "clearDynamicCommonProperties",
   "setStaticCommonProperties",
   "clearStaticCommonProperties"
-]);
-
-const DtApiMethodHolder dtApiMethods4DTAnalyticsUtil = DtApiMethodHolder(
-    "DTAnalyticsUtil", [
-  "trackTimerStart",
-  "trackTimerPause",
-  "trackTimerResume",
-  "trackTimerEnd"
 ]);
 
 class DtApiMethodHolder {
@@ -178,31 +178,6 @@ final Map<String, DtApiMethod> dtApiMethods = {
         DTIasReport.reportSubscribeSuccessIos(ordered[0], ordered[1],
             ordered[2], ordered[3], ordered[4], ordered[5], ordered[6],
             entrance: named["entrance"]);
-      }),
-  "DT_initSDK": DtApiMethod(
-      name: "DT",
-      orderedParamNames: ["appId", "url"],
-      orderedParam: ["String", "String"],
-      namedParam: {
-        "channel": "String",
-        "isDebug": "bool",
-        "logLevel": "DTLogLevel",
-        "manualEnableUpload": "bool"
-      },
-      run: (ordered, named) {
-        DT.initSDK(ordered[0], ordered[1],
-            channel: named["channel"],
-            isDebug: named["isDebug"],
-            logLevel: named["logLevel"],
-            manualEnableUpload: named["manualEnableUpload"]);
-      }),
-  "DT_enableUpload": DtApiMethod(
-      name: "DT",
-      orderedParamNames: [],
-      orderedParam: [],
-      namedParam: {},
-      run: (ordered, named) {
-        DT.enableUpload();
       }),
   "DTIapReport_reportPurchaseSuccess": DtApiMethod(
       name: "DTIapReport",
@@ -681,6 +656,90 @@ final Map<String, DtApiMethod> dtApiMethods = {
             ordered[4], ordered[5], ordered[6],
             properties: named["properties"], entrance: named["entrance"]);
       }),
+  "DTAnalyticsUtil_trackTimerStart": DtApiMethod(
+      name: "DTAnalyticsUtil",
+      orderedParamNames: ["eventName"],
+      orderedParam: ["String"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalyticsUtil.trackTimerStart(
+          ordered[0],
+        );
+      }),
+  "DTAnalyticsUtil_trackTimerPause": DtApiMethod(
+      name: "DTAnalyticsUtil",
+      orderedParamNames: ["eventName"],
+      orderedParam: ["String"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalyticsUtil.trackTimerPause(
+          ordered[0],
+        );
+      }),
+  "DTAnalyticsUtil_trackTimerResume": DtApiMethod(
+      name: "DTAnalyticsUtil",
+      orderedParamNames: ["eventName"],
+      orderedParam: ["String"],
+      namedParam: {},
+      run: (ordered, named) {
+        DTAnalyticsUtil.trackTimerResume(
+          ordered[0],
+        );
+      }),
+  "DTAnalyticsUtil_trackTimerEnd": DtApiMethod(
+      name: "DTAnalyticsUtil",
+      orderedParamNames: ["eventName"],
+      orderedParam: ["String"],
+      namedParam: {"properties": "Map<String, Object?>?"},
+      run: (ordered, named) {
+        DTAnalyticsUtil.trackTimerEnd(ordered[0],
+            properties: named["properties"]);
+      }),
+  "DT_initSDK": DtApiMethod(
+      name: "DT",
+      orderedParamNames: ["appId", "url"],
+      orderedParam: ["String", "String"],
+      namedParam: {
+        "channel": "String",
+        "isDebug": "bool",
+        "logLevel": "DTLogLevel",
+        "manualEnableUpload": "bool"
+      },
+      run: (ordered, named) {
+        DT.initSDK(ordered[0], ordered[1],
+            channel: named["channel"],
+            isDebug: named["isDebug"],
+            logLevel: named["logLevel"],
+            manualEnableUpload: named["manualEnableUpload"]);
+      }),
+  "DT_enableUpload": DtApiMethod(
+      name: "DT",
+      orderedParamNames: [],
+      orderedParam: [],
+      namedParam: {},
+      run: (ordered, named) {
+        DT.enableUpload();
+      }),
+  "DT_enableAutoTrack": DtApiMethod(
+      name: "DT",
+      orderedParamNames: ["presetEvent"],
+      orderedParam: ["DTPresetEvent"],
+      namedParam: {},
+      run: (ordered, named) {
+        DT.enableAutoTrack(
+          ordered[0],
+        );
+      }),
+  "DT_disableAutoTrack": DtApiMethod(
+      name: "DT",
+      orderedParamNames: ["presetEvent"],
+      orderedParam: ["DTPresetEvent"],
+      namedParam: {},
+      run: (ordered, named) {
+        DT.disableAutoTrack(
+          ordered[0],
+        );
+      }),
   "DTAnalytics_trackEvent": DtApiMethod(
       name: "DTAnalytics",
       orderedParamNames: ["eventName", "properties"],
@@ -873,44 +932,5 @@ final Map<String, DtApiMethod> dtApiMethods = {
       namedParam: {},
       run: (ordered, named) {
         DTAnalytics.clearStaticCommonProperties();
-      }),
-  "DTAnalyticsUtil_trackTimerStart": DtApiMethod(
-      name: "DTAnalyticsUtil",
-      orderedParamNames: ["eventName"],
-      orderedParam: ["String"],
-      namedParam: {},
-      run: (ordered, named) {
-        DTAnalyticsUtil.trackTimerStart(
-          ordered[0],
-        );
-      }),
-  "DTAnalyticsUtil_trackTimerPause": DtApiMethod(
-      name: "DTAnalyticsUtil",
-      orderedParamNames: ["eventName"],
-      orderedParam: ["String"],
-      namedParam: {},
-      run: (ordered, named) {
-        DTAnalyticsUtil.trackTimerPause(
-          ordered[0],
-        );
-      }),
-  "DTAnalyticsUtil_trackTimerResume": DtApiMethod(
-      name: "DTAnalyticsUtil",
-      orderedParamNames: ["eventName"],
-      orderedParam: ["String"],
-      namedParam: {},
-      run: (ordered, named) {
-        DTAnalyticsUtil.trackTimerResume(
-          ordered[0],
-        );
-      }),
-  "DTAnalyticsUtil_trackTimerEnd": DtApiMethod(
-      name: "DTAnalyticsUtil",
-      orderedParamNames: ["eventName"],
-      orderedParam: ["String"],
-      namedParam: {"properties": "Map<String, Object?>?"},
-      run: (ordered, named) {
-        DTAnalyticsUtil.trackTimerEnd(ordered[0],
-            properties: named["properties"]);
       })
 };
