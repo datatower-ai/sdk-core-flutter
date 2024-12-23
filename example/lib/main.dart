@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:datatower_ai_core_example/bean/sdk_info.dart';
 import 'package:datatower_ai_core_example/ui/common_properties_page.dart';
 import 'package:datatower_ai_core_example/ui/dev_test_page.dart';
@@ -10,7 +12,9 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
-  initNoti();
+  if (Platform.isAndroid) {
+    initNoti();
+  }
 }
 
 class MyApp extends StatefulWidget {
