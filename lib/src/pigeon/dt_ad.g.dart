@@ -36,6 +36,7 @@ enum AdMediationDart {
   TRADPLUS,
   TOBID,
   ADMOB,
+  IRONSOURCE,
 }
 
 enum AdPlatformDart {
