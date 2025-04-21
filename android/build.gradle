@@ -55,7 +55,7 @@ android {
         testImplementation 'org.jetbrains.kotlin:kotlin-test'
         testImplementation 'org.mockito:mockito-core:5.0.0'
 
-        implementation("ai.datatower:core:3.1.+")
+        implementation("ai.datatower:core:3.2.+")
     }
 
     testOptions {

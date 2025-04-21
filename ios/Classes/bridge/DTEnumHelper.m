@@ -253,6 +253,9 @@
             ret = DTAdMediationAdmob;
             break;
             
+        case DTAdMediationDartIRONSOURCE:
+            ret = DTAdMediationIRONSOURCE;
+            
         default:
             break;
     }
